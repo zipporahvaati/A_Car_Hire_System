@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ customer.name }}'s Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ customer.name }}!</h1>
+
+    <h2>Available Cars</h2>
+    <ul>
+        {% for car in cars %}
+            <li>
+                {{ car.make }} {{ car.model }} ({{ car.color }}) -
+                {% if car.available %}
+                    Available | <a href="/rent/{{ car.id }}">Rent</a>
+                {% elif car.rented_by == customer.id %}
+                    You rented this car | <a href="/return/{{ car.id }}">Return</a>
+                {% else %}
+                    Not available
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/admin">Go to Admin Dashboard</a>
+</body>
+</html>

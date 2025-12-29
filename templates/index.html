@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Dashboard</title>
+</head>
+<body>
+    <h1>Welcome, {{ customer.name }}!</h1>
+
+    <h2>Available Cars:</h2>
+    <ul>
+        {% for car in cars %}
+            <li>
+                {{ car }}
+                {% if car.available %}
+                    <a href="/rent/{{ car.car_id }}">Rent</a>
+                {% else %}
+                    <a href="/return/{{ car.car_id }}">Return</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="/admin">Go to Admin Dashboard</a>
+</body>
+</html>
